@@ -1,5 +1,3 @@
-
-
 var origin="https://sfield.s3.eu-central-1.amazonaws.com/pano/";
 
 var panorama6 = new PANOLENS.ImagePanorama( origin+"6.jpg" );
@@ -8,10 +6,17 @@ var panorama9 = new PANOLENS.ImagePanorama( origin+"9.jpg" );
 var panorama3 = new PANOLENS.ImagePanorama( origin+"3.jpg" );
 
 var viewer = new PANOLENS.Viewer( { output: 'console' } );
+
  viewer.add( panorama6 );
  viewer.add( panorama7 );
  viewer.add( panorama9 );
  viewer.add( panorama3 );
+
+ if(isMobile())
+ {
+   viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
+ }
+ 
 
 //Links
 linkPanoramas(panorama6, panorama7,new THREE.Vector3( -4106.08, 56.71, -2840.92 ));
