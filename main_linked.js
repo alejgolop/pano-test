@@ -52,3 +52,11 @@ linkPanoramas(panorama3, panorama9, new THREE.Vector3( 4035.40, -446.50, 2913.81
 panorama6.add(createInfoSpot(new THREE.Vector3( -4029.06, -1151.02, -2716.20 ), 'Una Piscina'));
 
 
+/*
+
+panorama.addEventListener( 'enter-fade-start', function(){
+  viewer.tweenControlCenter( lookAtPositions[0], 0 );
+} );
+*/
+
+
