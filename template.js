@@ -15,8 +15,8 @@
 
 var origin="https://sfield.s3.eu-central-1.amazonaws.com/pano/";
 
-var panorama6 = new PANOLENS.ImagePanorama( origin+"6.jpg" );
-var panorama7 = new PANOLENS.ImagePanorama( origin+"7.jpg" );
+var panorama6 = createImagePanorama(origin+"6.jpg");
+var panorama7 = createImagePanorama(origin+"7.jpg");
 
 
 var viewer = new PANOLENS.Viewer( { output: 'console' } );
