@@ -47,15 +47,12 @@ linkPanoramas(panorama3, panorama9, new THREE.Vector3( 4035.40, -446.50, 2913.81
 
 //InfoSpots
 
+var infospot=createInfoSpot(new THREE.Vector3( -4029.06, -1151.02, -2716.20 ), 'Una Piscina');
+panorama6.add(infospot);
 
-panorama6.add(createInfoSpot(new THREE.Vector3( -4029.06, -1151.02, -2716.20 ), 'Una Piscina'));
 
+//Initial Look At
+initialLookAt(panorama6,new THREE.Vector3(-4247.17, -590.58, -2556.46));
 
-/*
-
-panorama.addEventListener( 'enter-fade-start', function(){
-  viewer.tweenControlCenter( lookAtPositions[0], 0 );
-} );
-*/
 
 

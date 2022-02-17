@@ -19,6 +19,21 @@ function onFocus() {
   );
 }
 
+function displayText(event) {
+  event.target.element.style.display = 'block';
+}
+
+function hideTexts()
+{
+  this.children.forEach(child => {
+    if(child.element)
+    {
+      child.element.style.display = 'none';
+    }
+  });
+}
+
+
 var progressElement = document.getElementById( 'progress' );
 
 function onEnter() {
@@ -39,14 +54,27 @@ function createImagePanorama(url)
     var panorama=new PANOLENS.ImagePanorama( url );
     panorama.addEventListener( 'progress', onProgress );
     panorama.addEventListener( 'enter', onEnter );
+    panorama.addEventListener( 'leave', hideTexts);
     return panorama;
+}
+
+function initialLookAt(panorama,vector)
+{
+  panorama.removeEventListener('enter-fade-start');
+  panorama.addEventListener( 'enter-fade-start', function(){
+    viewer.tweenControlCenter( vector, 0 );
+  } );
 }
 
 function createInfoSpot(vector, text) {
   var spot = new PANOLENS.Infospot(400, eyeImage);
   spot.position.copy(vector);
   spot.addHoverText(text);
+  if(!isMobile())
+  {
   spot.addEventListener("click", onFocus);
+  }
+  spot.addEventListener("click", displayText);
   return spot;
 }
 
