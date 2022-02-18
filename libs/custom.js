@@ -33,7 +33,6 @@ function hideTexts()
   });
 }
 
-
 var progressElement = document.getElementById( 'progress' );
 
 function onEnter() {
