@@ -24,11 +24,7 @@ var viewer = new PANOLENS.Viewer( { output: 'console' } );
  viewer.add( panorama6 );
  viewer.add( panorama7 );
 
-//Si es un móvil, activa el control de los sensores por defecto.
- if(isMobile())
- {
-   viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
- }
+
 
 //Aquí creamos los links entre panoramas
 linkPanoramas(panorama6, panorama7,new THREE.Vector3( -4106.08, 56.71, -2840.92 ));
@@ -39,4 +35,17 @@ panorama6.add(createInfoSpot(new THREE.Vector3( -4029.06, -1151.02, -2716.20 ), 
 
 //Aquí definimos el punto de vista inicial de cada panorama, el cual no es obligatorio. Sólo funciona en navegador web, no en el móvil (por el control basado en sensores).
 initialLookAt(panorama6,new THREE.Vector3(-4247.17, -590.58, -2556.46));
+
+
+//Si es un móvil, activa el control de los sensores por defecto.
+if(isMobile())
+{
+   if(canRequestPermission())
+   {
+    permission();
+   }else{
+     viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
+   }
+ 
+}
  

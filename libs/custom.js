@@ -97,3 +97,21 @@ function isMobile() {
 function isAndroid() {
   return /(android)/i.test(ua);
 }
+
+function permission () {
+      DeviceMotionEvent.requestPermission()
+          .then( response => {
+          // (optional) Do something after API prompt dismissed.
+          if ( response == "granted" ) {
+             alert("Permiso Concedido");
+          }else{
+            alert("Permiso Rechazado");
+          }
+      }).catch( console.error )
+
+}
+
+function canRequestPermission()
+{
+  return typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function";
+}
