@@ -103,9 +103,9 @@ function permission () {
           .then( response => {
           // (optional) Do something after API prompt dismissed.
           if ( response == "granted" ) {
-             alert("Permiso Concedido");
+            viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
           }else{
-            alert("Permiso Rechazado");
+            //alert("Permiso Rechazado");
           }
       }).catch( console.error )
 
