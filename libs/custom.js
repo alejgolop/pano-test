@@ -1,3 +1,4 @@
+var swiper=undefined;
 var eyeImage =
   "data:image/png;base64,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";
 var walkImage =
@@ -65,16 +66,87 @@ function initialLookAt(panorama,vector)
   } );
 }
 
-function createInfoSpot(vector, text) {
-  var spot = new PANOLENS.Infospot(400, eyeImage);
+function createInfoSpot(vector, text,spotId, imgSrc=undefined) {
+  var spot = new PANOLENS.Infospot(400, imgSrc?imgSrc:eyeImage);
   spot.position.copy(vector);
   spot.addHoverText(text);
+
   if(!isMobile())
   {
   spot.addEventListener("click", onFocus);
   }
-  spot.addEventListener("click", displayText);
+
+  if(spotId)
+  {
+    spot.addEventListener("click", ()=>{
+      openSpotModal(spotId);
+    });
+  }else{
+    spot.addEventListener("click", displayText);
+  }
+  
   return spot;
+}
+
+function openSpotModal(spotId)
+{
+  console.log("Opening Modal for InfoSpot "+spotId);
+
+  spotObject=infoSpotData.get(spotId);
+
+  $(".swiper-wrapper").empty();
+  swiper?.destroy();
+
+
+        if(spotObject.media.length>0)
+        {
+        
+          spotObject.media.forEach((image,index)=>{
+           const imgTitle=''+spotObject.title+" Imagen "+(index+1);
+                    $(".swiper-wrapper").append('<div class="swiper-slide"><img src="'+mediaOrigin+image+"?rnd="+Math.random()+'" title="'+imgTitle+'"  alt="'+imgTitle+'"></div>')
+
+        });
+
+          swiper = new Swiper('.swiper', {
+            // Optional parameters
+            direction: 'horizontal',
+            loop: true,
+            
+            autoplay: {
+              delay: 5000,
+            },
+   
+            // If we need pagination
+            pagination: {
+              el: '.swiper-pagination',
+              clickable: true
+            },
+          
+            // Navigation arrows
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+           });
+        
+        }
+
+
+
+
+
+
+        
+    $('#poi-title-img').attr("src",mediaOrigin+spotObject.image);
+    $('#poi-title').text(spotObject.title);
+    $('#poi-body').html(spotObject.brief);
+    $('#modal-poi').modal("show");
+
+
+
+
+
+
 }
 
 function linkPanoramas(origin, destination, vector) {
@@ -115,3 +187,15 @@ function canRequestPermission()
 {
   return typeof( DeviceMotionEvent ) !== "undefined" && typeof( DeviceMotionEvent.requestPermission ) === "function";
 }
+
+function uuid() {
+  var buf = new Uint32Array(4);
+  window.crypto.getRandomValues(buf);
+  var idx = -1;
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      idx++;
+      var r = (buf[idx>>3] >> ((idx%8)*4))&15;
+      var v = c == 'x' ? r : (r&0x3|0x8);
+      return v.toString(16);
+  });
+};

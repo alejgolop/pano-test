@@ -1,0 +1,1 @@
+makePanoGraph("data/panorama-data.json");

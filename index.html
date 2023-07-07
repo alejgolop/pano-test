@@ -5,14 +5,75 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Pano Test</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="libs/thirdpart/bootstrap-5.0.1/css/bootstrap.flatly.min.css" />
+    <link rel="stylesheet" href="libs/thirdpart/swipper/swiper-bundle.min.css" />
+    <script src="libs/thirdpart/three.min.js"></script>
+    <script src="libs/thirdpart/panolens.min.js"></script>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src="libs/three.min.js"></script>
-    <script src="libs/panolens.min.js"></script>
     
 </head>
 <body>
     <div id="progress" style="width: 100%;" class="finish"></div>
+
+    <div
+        id="modal-poi"
+      class="modal fade"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="myLargeModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg modal-fullscreen-md-down">
+        <div class="modal-content">
+          <div class="modal-header bg-primary text-light">
+            <img id="poi-title-img" class="modal-title-img" src=""><h4 class="modal-title"><span id="poi-title"></span></h4>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body container">
+            <div class="swiper">
+              <!-- Additional required wrapper -->
+              <div class="swiper-wrapper">
+                <!-- Slides -->
+                <div class="swiper-slide">
+                  <img src="https://picsum.photos/800?rnd=0" alt="">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://picsum.photos/800?rnd=1" alt="">
+                </div>
+                <div class="swiper-slide">
+                  <img src="https://picsum.photos/800?rnd=2" alt="">
+                </div>
+                ...
+              </div>
+              <!-- If we need pagination -->
+              <div class="swiper-pagination"></div>
+            
+              <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-button-next"></div>
+            
+            </div>
+            <div class="container" id="poi-body"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <script src="libs/thirdpart/popperjs-2.9.2/popper.min.js"></script>
+    <script src="libs/thirdpart/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+    <script src="libs/thirdpart/bootstrap-5.0.1/js/bootstrap.bundle.min.js"></script>
+    <script src="libs/thirdpart/swipper/swiper-bundle.min.js"></script>
     <script src='libs/custom.js'></script>
-    <script src='template.js'></script>
+    <script src='libs/makePanoGraph.js'></script>
+    <script src='loaders/load_graph.js'></script>
+    <!-- <script src='loaders/dev.js'></script> -->
 </body>
 </html>
