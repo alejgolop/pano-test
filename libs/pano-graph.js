@@ -1,12 +1,15 @@
 // Variables to keep state
 var mediaOrigin = undefined;
-var viewer = new PANOLENS.Viewer({ output: "console", controlButtons:['fullscreen'] });
+var viewer = new PANOLENS.Viewer({
+  output: "console",
+  controlButtons: ["fullscreen"],
+});
 var panoMap = new Map();
 var infoSpotData = new Map();
 var swiper = undefined;
-var control=PANOLENS.CONTROLS.ORBIT;
-var isAMobileDevice=false;
-var hasPermToSensors=false;
+var control = PANOLENS.CONTROLS.ORBIT;
+var isAMobileDevice = false;
+var hasPermToSensors = false;
 
 // Default Icons
 var eyeImage =
@@ -32,7 +35,6 @@ function proccessPanoramas(panoramas) {
   // Load Each Panorama
   panoramas.forEach((panorama) => {
     var panoObject = createImagePanorama(mediaOrigin + panorama.source);
-    console.log(panoObject);
     viewer.add(panoObject);
     panoMap.set(panorama.id, panoObject);
 
@@ -73,11 +75,11 @@ function proccessPanoramas(panoramas) {
 
   // If Mobile, enable sensor control by default
   if (isMobile()) {
-    isAMobileDevice=true;
+    isAMobileDevice = true;
     if (canRequestPermission()) {
       permission();
     } else {
-      control=PANOLENS.CONTROLS.DEVICEORIENTATION;
+      control = PANOLENS.CONTROLS.DEVICEORIENTATION;
       viewer.enableControl(control);
     }
   }
@@ -258,12 +260,12 @@ function permission() {
     .then((response) => {
       // (optional) Do something after API prompt dismissed.
       if (response == "granted") {
-        control=PANOLENS.CONTROLS.DEVICEORIENTATION;
+        control = PANOLENS.CONTROLS.DEVICEORIENTATION;
         viewer.enableControl(control);
-        hasPermToSensors=true;
+        hasPermToSensors = true;
       } else {
         //alert("Permiso Rechazado");
-        hasPermToSensors=false;
+        hasPermToSensors = false;
       }
       initView();
     })
@@ -276,7 +278,6 @@ function canRequestPermission() {
     typeof DeviceMotionEvent.requestPermission === "function"
   );
 }
-
 
 // Make a new uuid, required to manage internally Info Spot Collection
 function uuid() {
@@ -291,37 +292,28 @@ function uuid() {
   });
 }
 
-
 // Visualization config methods
 
-function setOrbitControl(){
-  control=PANOLENS.CONTROLS.ORBIT;
-  viewer.enableControl( control );
-
+function setOrbitControl() {
+  control = PANOLENS.CONTROLS.ORBIT;
+  viewer.enableControl(control);
 }
 
-function setDeviceOrientationControl(){
-  if(isAMobileDevice)
-  {
-    control=PANOLENS.CONTROLS.DEVICEORIENTATION;
-    viewer.enableControl( control );
+function setDeviceOrientationControl() {
+  if (isAMobileDevice) {
+    control = PANOLENS.CONTROLS.DEVICEORIENTATION;
+    viewer.enableControl(control);
   }
-  
 }
 
-function setNormalMode()
-{
+function setNormalMode() {
   viewer.disableEffect();
 }
 
-function setCardBoardMode()
-{
-  viewer.enableEffect( PANOLENS.MODES.CARDBOARD );
+function setCardBoardMode() {
+  viewer.enableEffect(PANOLENS.MODES.CARDBOARD);
 }
 
-function setStereoMode()
-{
-  viewer.enableEffect( PANOLENS.MODES.STEREO );
+function setStereoMode() {
+  viewer.enableEffect(PANOLENS.MODES.STEREO);
 }
-
-
