@@ -31,7 +31,7 @@ function proccessPanoramas(panoramas) {
 
   // Load Each Panorama
   panoramas.forEach((panorama) => {
-    var panoObject = createImagePanorama(mediaOrigin + panorama.url);
+    var panoObject = createImagePanorama(mediaOrigin + panorama.source);
     console.log(panoObject);
     viewer.add(panoObject);
     panoMap.set(panorama.id, panoObject);

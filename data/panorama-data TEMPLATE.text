@@ -1,3 +1,5 @@
+-- TEMPLATE --
+
 {
     "mediaOrigin":"https://sfield.s3.eu-central-1.amazonaws.com/pano/",
     "panoramas":[
@@ -33,5 +35,38 @@
     ]
 }
 
+-- ! TEMPLATE --
 
+-- ESTRUCTURA --
 
+mediaOrigin: Origen de medios, raiz desde la que se cargarán los iconos e imágenes de los InfoSpots y los panoramas (Imagen).
+panoramas: Colección de panoramas
+    ->Un Panorama:
+        id: Identificador ÚNICO, necesario para enlazar los panoramas.
+        source: nombre de la imagen del panorama (se buscará en mediaOrigin).
+        initialLookAt: Punto inicial que el usuario verá cuando se cargue el panorama, sólo con los controles estáticos. Opcional, si no se requiere dejar como [].
+        links: Colección de Enlaces a otros panoramas, desde ÉSTE panorama a otros.
+            ->Un link:
+                destination: El panorama destino.
+                point: el punto donde se situará el 'portal' en ÉSTE panorama para ir al destino.
+        infoSpots: Colección de InfoSpots
+            -> Un InfoSpot:
+                title: Título del InfoSpot. Título en el popup y nombre que aparece en el panorama.
+                image: Icono de ÉSTE InfoSpot en el panorama. Formato .png con transparencia de 1024x1024 pixeles.
+                point: el punto donde se situará el InfoSpot.
+                brief: Colección de párrafos que forman el texto del InfoSpot.
+                media: Colección de imágenes que forman la galería del InfoSpot. Formato .jpg (OJO!: Redimensionar a la misma altura).
+
+-- ! ESTRUCTURA --
+
+-- ! INSTRUCCIONES --
+Crear una carpeta data en la raíz del proyecto
+Crear un nuevo archivo .json con el apartado TEMPLATE de éste documento.
+
+Si NO se va a usar un bucket S3 de AWS como repositorio multimedia el prpio proyecto debe contener los datos multimedia:
+    en data/ creamos una subcarpeta media. (Aquí deberemos copiar las imágenes de los panoramas y los iconos e imágenes de los InfoSpots)
+    En el .json creado modificamos el valor de mediaOrigin con "data/media"
+Si SÍ se va a usar un bucket S3 modificamos el valor de mediaOrigin con la ruta del bucket y la carpeta que contiene el multimedia, ej:https://sfield.s3.eu-central-1.amazonaws.com/pano/
+
+Sustituímos los valores del .json hasta tener todos los panoramas, enlaces entre ellos e InfoSpots deseados.
+Comprobar que todos los recursos multimedia se cargan correctamente, y que los links entre panoramas funcionan.
