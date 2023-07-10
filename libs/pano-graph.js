@@ -1,9 +1,12 @@
 // Variables to keep state
 var mediaOrigin = undefined;
-var viewer = new PANOLENS.Viewer({ output: "console" });
+var viewer = new PANOLENS.Viewer({ output: "console", controlButtons:['fullscreen'] });
 var panoMap = new Map();
 var infoSpotData = new Map();
 var swiper = undefined;
+var control=PANOLENS.CONTROLS.ORBIT;
+var isAMobileDevice=false;
+var hasPermToSensors=false;
 
 // Default Icons
 var eyeImage =
@@ -29,6 +32,7 @@ function proccessPanoramas(panoramas) {
   // Load Each Panorama
   panoramas.forEach((panorama) => {
     var panoObject = createImagePanorama(mediaOrigin + panorama.url);
+    console.log(panoObject);
     viewer.add(panoObject);
     panoMap.set(panorama.id, panoObject);
 
@@ -69,10 +73,12 @@ function proccessPanoramas(panoramas) {
 
   // If Mobile, enable sensor control by default
   if (isMobile()) {
+    isAMobileDevice=true;
     if (canRequestPermission()) {
       permission();
     } else {
-      viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
+      control=PANOLENS.CONTROLS.DEVICEORIENTATION;
+      viewer.enableControl(control);
     }
   }
 }
@@ -252,10 +258,14 @@ function permission() {
     .then((response) => {
       // (optional) Do something after API prompt dismissed.
       if (response == "granted") {
-        viewer.enableControl(PANOLENS.CONTROLS.DEVICEORIENTATION);
+        control=PANOLENS.CONTROLS.DEVICEORIENTATION;
+        viewer.enableControl(control);
+        hasPermToSensors=true;
       } else {
         //alert("Permiso Rechazado");
+        hasPermToSensors=false;
       }
+      initView();
     })
     .catch(console.error);
 }
@@ -280,3 +290,38 @@ function uuid() {
     return v.toString(16);
   });
 }
+
+
+// Visualization config methods
+
+function setOrbitControl(){
+  control=PANOLENS.CONTROLS.ORBIT;
+  viewer.enableControl( control );
+
+}
+
+function setDeviceOrientationControl(){
+  if(isAMobileDevice)
+  {
+    control=PANOLENS.CONTROLS.DEVICEORIENTATION;
+    viewer.enableControl( control );
+  }
+  
+}
+
+function setNormalMode()
+{
+  viewer.disableEffect();
+}
+
+function setCardBoardMode()
+{
+  viewer.enableEffect( PANOLENS.MODES.CARDBOARD );
+}
+
+function setStereoMode()
+{
+  viewer.enableEffect( PANOLENS.MODES.STEREO );
+}
+
+

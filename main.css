@@ -44,6 +44,10 @@ body {
   text-align: justify;
 }
 
+.slogan{
+  margin-top: 2rem;
+}
+
 /* ----- SWIPER ----- */
 
 .swiper-slide img {
@@ -84,4 +88,8 @@ body {
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   background: #6189b0;
+}
+
+.invisible{
+  display: none;
 }
