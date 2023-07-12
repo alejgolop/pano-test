@@ -13,9 +13,9 @@
   }
 
   .fab {
-    --_size: 2rem;
+    --_size: 1rem;
   
-    padding: calc(var(--_size) / 2);
+    padding: calc(var(--_size) / 3);
     border-radius: 30px;
    
     background-color: #2c3e50;

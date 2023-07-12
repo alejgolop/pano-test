@@ -51,7 +51,7 @@ body {
 /* ----- SWIPER ----- */
 
 .swiper-slide img {
-  width: 100%;
+  width: 80%;
 }
 
 .swiper {
@@ -61,10 +61,18 @@ body {
 .swiper-button-next,
 .swiper-button-prev {
   color: #fff;
+  text-shadow: 2px 2px 5px black;
 }
 
 .swiper-pagination-bullet-active {
   background: #fff;
+}
+
+.swiper-slide{
+  display: flex;
+  height: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 
