@@ -1,4 +1,15 @@
 function initView() {
+
+
+  changeLang(language.code);
+  if(availableLanguages.length<2)
+  {
+    $("#chooseLang-btn").addClass("invisible");
+  }else{
+    openChooseLangModal();
+  }
+
+
   //console.log(isAMobileDevice);
   if (isAMobileDevice) {
     $("#normal-mode-btn").click(() => {
@@ -39,11 +50,11 @@ function openInfoModal() {
     swiper?.destroy();
   
     $("#poi-title-img").attr("src", "assets/info-btn.svg");
-    $("#poi-title").text("Información");
+    $("#poi-title").text(langStrings[language.code]["info"]);
   
     $("#poi-body").empty();
-    $("#poi-body").append(`<row><a title="Ir al Sitio Diputación de Jaén" target="_blank" href="https://www.dipujaen.es/"><img class="text-center col-md-6" src="data/media/images/dipu-jaen.jpg" /></a><a title="Ir al Sitio Jaén Paraíso Interior" target="_blank" href="https://www.jaenparaisointerior.es/"><img class="text-center col-md-6" src="data/media/images/paraiso-jaen.jpg" /></a></row>`);
-    $("#poi-body").append(`<h3 class="text-center slogan">Actividad subvencionada por la Diputación Provincial de Jaén</h3>`);
+    $("#poi-body").append(`<row><a title="${langStrings[language.code]["goToDipu"]}" target="_blank" href="https://www.dipujaen.es/"><img class="text-center col-md-6" src="data/media/images/dipu-jaen.jpg" /></a><a title="${langStrings[language.code]["goToParaiso"]}" target="_blank" href="https://www.jaenparaisointerior.es/"><img class="text-center col-md-6" src="data/media/images/paraiso-jaen.jpg" /></a></row>`);
+    $("#poi-body").append(`<h3 class="text-center slogan">${langStrings[language.code]["attrib"]}</h3>`);
 
     $("#modal-poi").modal("show");
   }

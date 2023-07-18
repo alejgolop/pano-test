@@ -4,6 +4,7 @@ var viewer = new PANOLENS.Viewer({
   output: "console",
   controlButtons: ["fullscreen"],
 });
+var panoRaw=[];
 var panoMap = new Map();
 var infoSpotData = new Map();
 var swiper = undefined;
@@ -29,6 +30,7 @@ function makePanoGraph(pano_data) {
 
 // This builds panorama graph, with portals and info spots
 function proccessPanoramas(panoramas) {
+  panoRaw=panoramas;
   panoMap.clear();
   infoSpotData.clear();
 
@@ -41,19 +43,21 @@ function proccessPanoramas(panoramas) {
     // Make InfoSpots
     panorama.infoSpots.forEach((spot) => {
       var spotId = undefined;
-      if (spot.brief.length > 1) {
+      if (spot.brief[language.code].length > 1) {
         spotId = uuid();
-        infoSpotData.set(spotId, spot);
-      }
 
-      panoObject.add(
-        createInfoSpot(
+        spot["id"]=spotId;
+
+        const infoSpotObject = createInfoSpot(
           new THREE.Vector3(...spot.point),
-          spot.title,
+          spot.title[language.code],
           spotId,
           spot.image.length > 1 ? mediaOrigin + spot.image : undefined
-        )
-      );
+        );
+        panoObject.add(infoSpotObject);
+        spot["spotObject"] = infoSpotObject;
+        infoSpotData.set(spotId, spot);
+      }
     });
 
     // Apply initial Look At, if defined
@@ -84,6 +88,35 @@ function proccessPanoramas(panoramas) {
     }
   }
 }
+
+function translateInfoSpots()
+{
+  for (let [key, value] of infoSpotData) {
+      console.log(key);
+
+      var done=false;
+      for(var i=0;i<panoRaw.length;i++)
+      {
+        for(var j=0;j<panoRaw[i].infoSpots.length;j++)
+        {
+          if(panoRaw[i].infoSpots[j].id==key)
+          {
+            infoSpotData.get(key).spotObject.setText(panoRaw[i].infoSpots[j].title[language.code]);
+            break;
+          }
+        }
+        if(done)
+        {
+          break;
+        }
+      }
+
+
+
+      
+    }
+}
+
 
 // Focus tweening parameter
 var parameters = {
@@ -187,7 +220,9 @@ function openSpotModal(spotId) {
       //Image or Video??
       //var extension = media.substr(media.lastIndexOf('.'),media.length);
       //if([".jpg",".jpeg",".png"].includes(extension))
-      const imgTitle = "" + spotObject.title + " Imagen " + (index + 1);
+      const imgTitle = `${spotObject.title} ${
+        langStrings[language.code]["image"]
+      } ${index + 1}`;
       $(".swiper-wrapper").append(
         '<div class="swiper-slide"><img src="' +
           mediaOrigin +
@@ -226,15 +261,22 @@ function openSpotModal(spotId) {
   }
 
   $("#poi-title-img").attr("src", mediaOrigin + spotObject.image);
-  $("#poi-title").text(spotObject.title);
+  $("#poi-title").text(spotObject.title[language.code]);
 
   $("#poi-body").empty();
 
-  spotObject.brief.forEach((paragraph) => {
+  spotObject.brief[language.code].forEach((paragraph) => {
     $("#poi-body").append(`<p>${paragraph}</p>`);
   });
 
   $("#modal-poi").modal("show");
+
+  $(".swiper-button-prev").attr(
+    "title",
+    langStrings[language.code]["previous"]
+  );
+  $(".swiper-button-next").attr("title", langStrings[language.code]["next"]);
+  $(".btn-close").attr("title", langStrings[language.code]["close"]);
 }
 
 // Device detection Stuff and permissions

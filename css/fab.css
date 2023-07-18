@@ -12,6 +12,20 @@
     gap: var(--_viewport-margin);
   }
 
+  .fabs-rightup {
+    --_viewport-margin: 2.5vmin;
+    position: fixed;
+    right: 0;
+    z-index: 1054;
+    inset-block: var(--_viewport-margin);
+    margin-right: var(--_viewport-margin);
+    display: flex;
+    flex-direction: column-reverse;
+    place-items: center;
+    gap: var(--_viewport-margin);
+    justify-content: flex-end;
+  }
+
   .fab {
     --_size: 1rem;
   

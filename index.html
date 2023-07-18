@@ -19,7 +19,7 @@
     <!-- Floating Button -->
     <div class="fabs" role="group" aria-label="Floating action buttons">
       <!-- buttons will go here -->
-      <button  class="btn btn-primary fab" onclick="openInfoModal()" title="Información" aria-label="Información">
+      <button id="info-btn" class="btn btn-primary fab" onclick="openInfoModal()" title="Información" aria-label="Información">
         <img aria-hidden="true" src="assets/info-btn.svg" width="32" height="32" />
       </button>
       <button id="normal-mode-btn"  class="btn btn-primary fab" title="Activar Visualización Estática" aria-label="Activar Visualización Estática">
@@ -29,6 +29,13 @@
         <img aria-hidden="true" src="assets/screen_rotation.svg" width="32" height="32" />
       </button>
      
+    </div>
+
+    <div class="fabs-rightup" role="group" aria-label="Floating action buttons">
+      <!-- buttons will go here -->
+      <button  id="chooseLang-btn" class="btn btn-primary fab" onclick="openChooseLangModal()" title="Change Language" aria-label="Change Language">
+        <img aria-hidden="true" src="assets/language.svg" width="32" height="32" />
+      </button>
     </div>
 
     <!-- MODAL -->
@@ -80,8 +87,10 @@
     <script src="lib/popperjs-2.9.2/popper.min.js"></script>
     <script src="lib/jquery-3.6.0/jquery-3.6.0.min.js"></script>
     <script src="lib/bootstrap-5.0.1/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/swal2/sweetalert-2.11.js"></script>
     <script src="lib/swipper/swiper-bundle.min.js"></script>
     <script src='js/pano-graph.js'></script>
+    <script src='js/translate-ui.js'></script>
     <script src='js/pano-app.js'></script>
     <script src='js/loaders/startup-graph.js'></script>
 </body>

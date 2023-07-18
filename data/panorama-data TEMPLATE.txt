@@ -49,24 +49,24 @@ panoramas: Colección de panoramas
             ->Un link:
                 destination: El panorama destino.
                 point: el punto donde se situará el 'portal' en ÉSTE panorama para ir al destino.
-        infoSpots: Colección de InfoSpots
+        infoSpots: Colección de puntos de información
             -> Un InfoSpot:
-                title: Título del InfoSpot. Título en el popup y nombre que aparece en el panorama.
+                title: Título del punto de información. Título en el popup y nombre que aparece en el panorama.
                 image: Icono de ÉSTE InfoSpot en el panorama. Formato .png con transparencia de 1024x1024 pixeles.
-                point: el punto donde se situará el InfoSpot.
-                brief: Colección de párrafos que forman el texto del InfoSpot.
-                media: Colección de imágenes que forman la galería del InfoSpot. Formato .jpg (OJO!: Redimensionar a la misma altura).
+                point: el punto donde se situará el punto de información.
+                brief: Colección de párrafos que forman el texto del punto de información.
+                media: Colección de imágenes que forman la galería del punto de información. Formato .jpg (OJO!: Redimensionar a la misma altura).
 
 -- ! ESTRUCTURA --
 
 -- ! INSTRUCCIONES --
 Crear una carpeta data en la raíz del proyecto
-Crear un nuevo archivo .json con el apartado TEMPLATE de éste documento.
+Crear un nuevo archivo .json dentro de data con el apartado TEMPLATE de éste documento. Llamarlo 'panorama-data.json'.
 
 Si NO se va a usar un bucket S3 de AWS como repositorio multimedia el prpio proyecto debe contener los datos multimedia:
-    en data/ creamos una subcarpeta media. (Aquí deberemos copiar las imágenes de los panoramas y los iconos e imágenes de los InfoSpots)
+    en data/ creamos una subcarpeta media. (Aquí deberemos copiar las imágenes de los panoramas y los iconos e imágenes de los puntos de información)
     En el .json creado modificamos el valor de mediaOrigin con "data/media"
 Si SÍ se va a usar un bucket S3 modificamos el valor de mediaOrigin con la ruta del bucket y la carpeta que contiene el multimedia, ej:https://sfield.s3.eu-central-1.amazonaws.com/pano/
 
-Sustituímos los valores del .json hasta tener todos los panoramas, enlaces entre ellos e InfoSpots deseados.
+Sustituímos los valores del .json hasta tener todos los panoramas, enlaces entre ellos y puntos de información deseados.
 Comprobar que todos los recursos multimedia se cargan correctamente, y que los links entre panoramas funcionan.
