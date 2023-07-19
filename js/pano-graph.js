@@ -224,7 +224,7 @@ function openSpotModal(spotId) {
         langStrings[language.code]["image"]
       } ${index + 1}`;
       $(".swiper-wrapper").append(
-        '<div class="swiper-slide"><img src="' +
+        '<div class="swiper-slide"><div class="swiper-zoom-container"><img src="' +
           mediaOrigin +
           media +
           "?rnd=" +
@@ -233,7 +233,7 @@ function openSpotModal(spotId) {
           imgTitle +
           '"  alt="' +
           imgTitle +
-          '"></div>'
+          '"></div></div>'
       );
     });
 
@@ -241,7 +241,7 @@ function openSpotModal(spotId) {
       // Optional parameters
       direction: "horizontal",
       loop: true,
-
+      zoom: true,
       autoplay: {
         delay: 5000,
       },

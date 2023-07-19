@@ -2,10 +2,9 @@ function initView() {
 
 
   changeLang(language.code);
-  if(availableLanguages.length<2)
+  if(availableLanguages.length>1)
   {
-    $("#chooseLang-btn").addClass("invisible");
-  }else{
+    $("#chooseLang-btn").removeClass("invisible");
     openChooseLangModal();
   }
 
@@ -44,19 +43,19 @@ initView();
 
 
 function openInfoModal() {
-    console.log("Opening Info Modal");
-  
-    $(".swiper-wrapper").empty();
-    swiper?.destroy();
-  
-    $("#poi-title-img").attr("src", "assets/info-btn.svg");
-    $("#poi-title").text(langStrings[language.code]["info"]);
-  
-    $("#poi-body").empty();
-    $("#poi-body").append(`<row><a title="${langStrings[language.code]["goToDipu"]}" target="_blank" href="https://www.dipujaen.es/"><img class="text-center col-md-6" src="data/media/images/dipu-jaen.jpg" /></a><a title="${langStrings[language.code]["goToParaiso"]}" target="_blank" href="https://www.jaenparaisointerior.es/"><img class="text-center col-md-6" src="data/media/images/paraiso-jaen.jpg" /></a></row>`);
-    $("#poi-body").append(`<h3 class="text-center slogan">${langStrings[language.code]["attrib"]}</h3>`);
+  console.log("Opening Info Modal");
 
-    $("#modal-poi").modal("show");
-  }
+  $(".swiper-wrapper").empty();
+  swiper?.destroy();
 
+  $("#poi-title-img").attr("src", "assets/info-btn.svg");
+  $("#poi-title").text(langStrings[language.code]["info"]);
+
+  $("#poi-body").empty();
+  $("#poi-body").append(`<h3 class="text-center slogan">${langStrings[language.code]["attrib"]}</h3>`);
+  $("#poi-body").append(`<div class="row"><a class="col" title="${langStrings[language.code]["goToDipu"]}" target="_blank" href="https://www.dipujaen.es/"><img class="text-center w-100" src="data/media/images/dipu-jaen.jpg" /></a></div>`);
+  $("#poi-body").append(`<div class="row"><a class="col" title="${langStrings[language.code]["goToParaiso"]}" target="_blank" href="https://www.jaenparaisointerior.es/"><img class="text-center w-100" src="data/media/images/paraiso-jaen.jpg" /></a></div>`);
+
+  $("#modal-poi").modal("show");
+}
 

@@ -1,5 +1,5 @@
 const availableLanguages = [
-  //{ code: "en", name: "English" },
+  { code: "en", name: "English" },
   { code: "es", name: "Español" },
 ];
 
@@ -15,6 +15,7 @@ const langStrings = {
     next: "Siguiente",
     previous: "Anterior",
     close: "Cerrar",
+    goTo: "Ir al Sitio",
     attrib: "Actividad subvencionada por la Diputación Provincial de Jaén",
     goToDipu: "Ir al Sitio Diputación de Jaén",
     goToParaiso: "Ir al Sitio Jaén Paraíso Interior",
