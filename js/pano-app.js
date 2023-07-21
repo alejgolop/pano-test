@@ -1,6 +1,4 @@
 function initView() {
-
-
   changeLang(language.code);
   if(availableLanguages.length>1)
   {

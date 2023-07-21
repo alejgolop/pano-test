@@ -1,4 +1,5 @@
 {
+    "name":"Panorama Example - 4D Geoservices",
     "mediaOrigin":"data/media/",
     "panoramas":[
         {   "id":"pano_0",

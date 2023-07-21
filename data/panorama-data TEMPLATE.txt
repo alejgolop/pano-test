@@ -1,6 +1,7 @@
 -- TEMPLATE --
 
 {
+    "name":"Panorama Example - 4D Geoservices",
     "mediaOrigin":"https://sfield.s3.eu-central-1.amazonaws.com/pano/",
     "panoramas":[
         {   "id":"pano_0",
@@ -38,7 +39,7 @@
 -- ! TEMPLATE --
 
 -- ESTRUCTURA --
-
+name: Nombre del proyecto, aparecerá en el título de la página web
 mediaOrigin: Origen de medios, raiz desde la que se cargarán los iconos e imágenes de los InfoSpots y los panoramas (Imagen).
 panoramas: Colección de panoramas
     ->Un Panorama:
@@ -61,7 +62,7 @@ panoramas: Colección de panoramas
 
 -- ! INSTRUCCIONES --
 Crear una carpeta data en la raíz del proyecto
-Crear un nuevo archivo .json dentro de data con el apartado TEMPLATE de éste documento. Llamarlo 'panorama-data.json'.
+Crear un nuevo archivo .json dentro de data con el apartado TEMPLATE de éste documento. Nombrarlo como 'panorama-data.json'.
 
 Si NO se va a usar un bucket S3 de AWS como repositorio multimedia el prpio proyecto debe contener los datos multimedia:
     en data/ creamos una subcarpeta media. (Aquí deberemos copiar las imágenes de los panoramas y los iconos e imágenes de los puntos de información)

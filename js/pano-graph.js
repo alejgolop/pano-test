@@ -23,6 +23,7 @@ function makePanoGraph(pano_data) {
   fetch(pano_data)
     .then((response) => response.json())
     .then((panoramaData) => {
+      $("title").text(panoramaData.name);
       mediaOrigin = panoramaData.mediaOrigin;
       proccessPanoramas(panoramaData.panoramas);
     });
